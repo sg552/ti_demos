@@ -9,7 +9,6 @@ tmp
 .settings
 .swp
 Thumbs.db
-app/controllers/*.js
 .bundle
 db/*.sqlite3
 db/data.yml
