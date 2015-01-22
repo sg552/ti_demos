@@ -29,6 +29,27 @@ function clickImage(e) {
     done();
 }
 function get_remote_url(url) {
+  return Q.Promise(function(resolve, reject, notify){
+    client = Ti.Network.createHTTPClient(
+        {
+          onload: function(e) {
+            alert('success in get_remote_url');
+            Ti.API.info(this.responseText);
+            resolve(this.responseText);
+          },
+          onerror: function(e) {
+            Ti.API.error(e);
+            alert('faled');
+            reject( new Error('lalala'));
+          },
+          timeout: 5000
+        })
+    client.open('GET', url);
+    client.send();
+  })
+}
+/*
+function get_remote_url(url) {
   deferred = Q.defer();
   client = Ti.Network.createHTTPClient(
       {
@@ -48,5 +69,6 @@ function get_remote_url(url) {
   client.send();
   return deferred.promise;
 }
+*/
 
 $.index.open();
